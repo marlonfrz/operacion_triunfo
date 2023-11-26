@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Competitor, Judge, Teacher
 
 
 def main(request):
@@ -6,12 +7,22 @@ def main(request):
 
 
 def competitors_list(request):
-    return render(request, "participants/competitors_list.html")
+    competitors = Competitor.objects.all()
+    return render(
+        request, "participants/competitors_list.html", {"competitors": competitors}
+    )
 
 
 def judges_list(request):
-    return render(request, "participants/judges_list.html")
+    judges = Judge.objects.all()
+    return render(request, "participants/judges_list.html", {"judges": judges})
 
 
 def teachers_list(request):
-    return render(request, "participants/teachers_list.html")
+    teachers = Teacher.objects.all()
+    return render(request, "participants/teachers_list.html", {"teachers": teachers})
+
+
+def competitor_detail(request, slug):
+    slug = Competitor.objects.get(slug=slug)
+    return render(request, "participants/competitor_detail.html", {"slug": slug})

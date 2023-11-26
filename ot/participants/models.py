@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class MusicStyle(models.Model):
@@ -35,6 +36,9 @@ class Competitor(models.Model):
 
     def __str__(self):
         return f"{self.first_name}"
+
+    def get_absolute_url(self):
+        return reverse("competitor_detail", args=[self.slug])
 
 
 class Teacher(models.Model):

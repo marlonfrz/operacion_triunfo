@@ -1,0 +1,10 @@
+.header-a {
+    padding-right: 15px;
+    color: black;
+    font-size: 20px;
+}
+
+.header-a:hover {
+    color: black;
+    font-weight: bold;
+}
