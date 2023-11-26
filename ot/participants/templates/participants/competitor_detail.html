@@ -1,13 +1,27 @@
-{% extend 'base.html' %}
+{% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <div class="container-fluid">
     <!--imagen del competidor-->
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-md-6">
-            <img src="" alt="">
+            {% if competitor.avatar %}
+            <a href="{{ competitor.get_absolute_url }}"><img class="mx-auto d-block" id="img"
+                    src="{{ competitor.avatar.url }}" alt="competitor_img"></a>
+            {% else %}
+            <a href="{{ competitor.get_absolute_url }}"><img class="mx-auto d-block" id="img"
+                    src="{% static 'img/perfil.png' %}"></a>
+            {% endif %}
         </div>
         <!--datos del competidor-->
         <div class="col-md-6">
+            <p></p><i class="bi bi-geo-alt"> {{competitor.city}}</i></p><br>
+            <p><i class="bi bi-box"> {{competitor.job}}</i></p><br>
+            <p><i class="bi bi-lightbulb-fill"> {{competitor.hobbies}}</i></p><br>
+            <p><i class="bi bi-star"> {{ competitor.musicstyle.all|join:"," }}</i></p>
+
+
+            <!--musicstyle-->
 
         </div>
     </div>

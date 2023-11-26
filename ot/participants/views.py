@@ -24,5 +24,7 @@ def teachers_list(request):
 
 
 def competitor_detail(request, slug):
-    slug = Competitor.objects.get(slug=slug)
-    return render(request, "participants/competitor_detail.html", {"slug": slug})
+    competitor = Competitor.objects.get(slug=slug)
+    return render(
+        request, "participants/competitor_detail.html", {"competitor": competitor}
+    )

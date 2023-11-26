@@ -19,7 +19,7 @@ class MusicStyle(models.Model):
 class Competitor(models.Model):
     first_name = models.CharField(max_length=250)
     last_name = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=250)
+    slug = models.SlugField(max_length=250, unique=True)
     birthdate = models.DateField()
     subject = models.CharField(max_length=250)
     city = models.CharField(max_length=250)
