@@ -1,24 +1,26 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<link href="{% static 'css/detail.css' %}" rel="stylesheet">
 <div class="container-fluid">
     <!--imagen del competidor-->
     <div class="row mt-5">
         <div class="col-md-6">
             {% if competitor.avatar %}
-            <a href="{{ competitor.get_absolute_url }}"><img class="mx-auto d-block" id="img"
-                    src="{{ competitor.avatar.url }}" alt="competitor_img"></a>
+            <a href="{{ competitor.get_absolute_url }}"><img class="mx-auto d-block" id="img_detail"
+                    src="{{ competitor.avatar.url }}"></a>
             {% else %}
-            <a href="{{ competitor.get_absolute_url }}"><img class="mx-auto d-block" id="img"
+            <a href="{{ competitor.get_absolute_url }}"><img class="mx-auto d-block" id="img_detail"
                     src="{% static 'img/perfil.png' %}"></a>
             {% endif %}
+            <h2 class="text-center">{{ competitor.first_name }}</h2>
         </div>
         <!--datos del competidor-->
         <div class="col-md-6">
-            <p></p><i class="bi bi-geo-alt"> {{competitor.city}}</i></p><br>
+            <p><i class="bi bi-geo-alt"> {{competitor.city}}</i></p><br>
             <p><i class="bi bi-box"> {{competitor.job}}</i></p><br>
             <p><i class="bi bi-lightbulb-fill"> {{competitor.hobbies}}</i></p><br>
-            <p><i class="bi bi-star"> {{ competitor.musicstyle.all|join:"," }}</i></p>
+            <p><i class="bi bi-star"> {{ competitor.musicstyle.all|join:", " }}</i></p>
 
 
             <!--musicstyle-->

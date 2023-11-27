@@ -1,6 +1,7 @@
-#img {
-    height: 120px;
-    width: 120px;
+a #img_detail {
+    height: 300px;
+    width: 300px;
+    border-radius: 150px;
 }
 
 p {

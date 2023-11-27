@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<link href="{% static 'css/detail.css' %}" rel="stylesheet">
+<link href="{% static 'css/list.css' %}" rel="stylesheet">
 <div class="container-fluid justify-content-center">
     <div class="row mt-5">
-        <!--Cada profesor-->
+        <!--Cada competidor-->
         {% for competitor in competitors %}
         <div class="col-md-2 col-sm-4 col-6">
             {% if competitor.avatar %}
@@ -12,7 +12,7 @@
                     src="{{ competitor.avatar.url }}" alt="competitor_img"></a>
             {% else %}
             <a href="{{ competitor.get_absolute_url }}"><img class="mx-auto d-block" id="img"
-                    src="{% static 'img/perfil.png' %}"></a>
+                    src="{% static 'img/perfil.png' %}" style="border-radius: 60px;"></a>
             {% endif %}
             <p class="text-center">{{ competitor.first_name }}</p>
         </div>

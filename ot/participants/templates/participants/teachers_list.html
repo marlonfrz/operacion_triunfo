@@ -1,4 +1,22 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<h1>asdas</h1>
-{% endblock %}
+<link href="{% static 'css/list.css' %}" rel="stylesheet">
+<div class="container-fluid justify-content-center">
+    <div class="row mt-5">
+        <!--Cada profesor-->
+        {% for teacher in teachers %}
+        <div class="col-md-2 col-sm-4 col-6">
+            {% if teacher.avatar %}
+            <a href="{{ teacher.get_absolute_url }}"><img class="mx-auto d-block" id="img"
+                    src="{{ teacher.avatar.url }}" alt="teacher_img"></a>
+            {% else %}
+            <a href="{{ teacher.get_absolute_url }}"><img class="mx-auto d-block" id="img"
+                    src="{% static 'img/perfil.png' %}"></a>
+            {% endif %}
+            <p class="text-center">{{ teacher.first_name }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{%endblock%}

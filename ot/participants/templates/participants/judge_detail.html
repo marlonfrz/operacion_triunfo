@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link href="{% static 'css/detail.css' %}" rel="stylesheet">
+<div class="container-fluid">
+    <!--imagen del jurado-->
+    <div class="row mt-5">
+        <div class="col-md-6">
+            {% if judge.avatar %}
+            <a href="{{ judge.get_absolute_url }}"><img class="mx-auto d-block" id="img_detail"
+                    src="{{ judge.avatar.url }}"></a>
+            {% else %}
+            <a href="{{ judge.get_absolute_url }}"><img class="mx-auto d-block" id="img_detail"
+                    src="{% static 'img/perfil.png' %}"></a>
+            {% endif %}
+            <h2 class="text-center">{{ judge.first_name }}</h2>
+        </div>
+        <!--datos del competidor-->
+        <div class="col-md-6">
+            <p><i class="bi bi-box"> {{judge.job}}</i></p><br>
+
+
+            <!--musicstyle-->
+
+        </div>
+    </div>
+    {% endblock %}

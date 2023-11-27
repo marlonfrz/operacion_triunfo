@@ -11,5 +11,15 @@ urlpatterns = [
         views.competitor_detail,
         name="competitor_detail",
     ),
+    path(
+        "teacher_detail/<slug:slug>",
+        views.teacher_detail,
+        name="teacher_detail",
+    ),
+    path(
+        "judge_detail/<slug:slug>",
+        views.judge_detail,
+        name="judge_detail",
+    ),
     path("", views.main, name="main"),
 ]

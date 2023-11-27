@@ -28,3 +28,13 @@ def competitor_detail(request, slug):
     return render(
         request, "participants/competitor_detail.html", {"competitor": competitor}
     )
+
+
+def teacher_detail(request, slug):
+    teacher = Teacher.objects.get(slug=slug)
+    return render(request, "participants/teacher_detail.html", {"teacher": teacher})
+
+
+def judge_detail(request, slug):
+    judge = Judge.objects.get(slug=slug)
+    return render(request, "participants/judge_detail.html", {"judge": judge})

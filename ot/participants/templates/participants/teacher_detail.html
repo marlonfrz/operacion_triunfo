@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link href="{% static 'css/detail.css' %}" rel="stylesheet">
+<div class="container-fluid">
+    <!--imagen del competidor-->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            {% if teacher.avatar %}
+            <a href="{{ teacher.get_absolute_url }}"><img class="mx-auto d-block" id="img_detail"
+                    src="{{ teacher.avatar.url }}"></a>
+            {% else %}
+            <a href="{{ teacher.get_absolute_url }}"><img class="mx-auto d-block" id="img_detail"
+                    src="{% static 'img/perfil.png' %}"></a>
+            {% endif %}
+            <h2 class="text-center">{{ teacher.first_name }}</h2>
+        </div>
+        {% endblock %}

@@ -57,6 +57,9 @@ class Teacher(models.Model):
     def __str__(self):
         return f"{self.first_name}"
 
+    def get_absolute_url(self):
+        return reverse("teacher_detail", args=[self.slug])
+
 
 class Judge(models.Model):
     first_name = models.CharField(max_length=250)
@@ -73,3 +76,6 @@ class Judge(models.Model):
 
     def __str__(self):
         return f"{self.first_name}"
+
+    def get_absolute_url(self):
+        return reverse("judge_detail", args=[self.slug])

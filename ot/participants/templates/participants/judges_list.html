@@ -1,1 +1,22 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link href="{% static 'css/list.css' %}" rel="stylesheet">
+<div class="container-fluid justify-content-center">
+    <div class="row mt-5">
+        <!--Cada jurado-->
+        {% for judge in judges %}
+        <div class="col-md-3 col-sm-4 col-6">
+            {% if judge.avatar %}
+            <a href="{{ judge.get_absolute_url }}"><img class="mx-auto d-block" id="img"
+                    src="{{ competitor.avatar.url }}" alt="judge_img"></a>
+            {% else %}
+            <a href="{{ judge.get_absolute_url }}"><img class="mx-auto d-block" id="img"
+                    src="{% static 'img/perfil.png' %}"></a>
+            {% endif %}
+            <p class="text-center">{{ judge.first_name }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{%endblock%}
