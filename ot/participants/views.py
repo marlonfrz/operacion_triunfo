@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .models import Competitor, Judge, Teacher
+from django.db.models import Q
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def main(request):
@@ -38,3 +40,37 @@ def teacher_detail(request, slug):
 def judge_detail(request, slug):
     judge = Judge.objects.get(slug=slug)
     return render(request, "participants/judge_detail.html", {"judge": judge})
+
+
+def search(request):
+    searched = request.GET.get("searched")
+    competitors_results = Competitor.objects.filter(
+        Q(first_name__icontains=searched)
+        | Q(last_name__icontains=searched)
+        | Q(city__icontains=searched)
+        | Q(job__icontains=searched)
+    )
+    teachers_results = Teacher.objects.filter(
+        Q(first_name__icontains=searched) | Q(last_name__icontains=searched)
+    )
+    judges_results = Judge.objects.filter(
+        Q(first_name__icontains=searched)
+        | Q(last_name__icontains=searched)
+        | Q(job__icontains=searched)
+    )
+
+    results = list(competitors_results) + list(teachers_results) + list(judges_results)
+
+    # Paginación
+    page = request.GET.get("page", 1)
+    paginator = Paginator(results, 5)
+
+    try:
+        paginated_results = paginator.page(page)
+    except PageNotAnInteger:
+        paginated_results = paginator.page(1)
+    except EmptyPage:
+        paginated_results = paginator.page(paginator.num_pages)
+    return render(
+        request, "search.html", {"results": paginated_results, "searched": searched}
+    )

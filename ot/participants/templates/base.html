@@ -30,7 +30,12 @@
             <p class="header-p">Jurado</p>
         </a>
         <!--Barra de busqueda-->
-
+        {% csrf_token %}
+        <div class="position-absolute end-0 px-3">
+            <form method=GET action="{% url 'search'%}"> <input type="search" placeholder="search" name="searched">
+                <button class="" type="submit">Search</button>
+            </form>
+        </div>
     </div>
 </nav>
 

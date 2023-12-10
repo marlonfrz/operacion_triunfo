@@ -21,5 +21,6 @@ urlpatterns = [
         views.judge_detail,
         name="judge_detail",
     ),
+    path("search/", views.search, name="search"),
     path("", views.main, name="main"),
 ]

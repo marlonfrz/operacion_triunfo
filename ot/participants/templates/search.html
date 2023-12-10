@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid justify-content-center">
+    <div class="row mt-5">
+        <link href="{% static 'css/list.css' %}" rel="stylesheet">
+        {% if results %}
+        <h3>Results for: "{{ searched }}"</h3>
+        {% for result in results %}
+        <div class="col-md-2 col-sm-4 col-6">
+            <a href="{{ result.get_absolute_url }}">
+                {% if result.avatar %}
+                <img class="mx-auto d-block" id="img" src="{{ result.avatar.url }}" alt="teacher_img">
+                {% else %}
+                <img class="mx-auto d-block" id="img" src="{% static 'img/perfil.png' %}">
+                {% endif %}
+            </a>
+            <p class="text-center">{{ result.first_name }}</p>
+        </div>
+        {% endfor %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if results.has_previous %}
+                <!--?searched={{ searched }}& Esto es para mantener la busqueda sin que se pierda y seguir con la funcionalidad del paginator  -->
+                <a href="?searched={{ searched }}&page=1">&laquo; first</a>
+                <a href="?searched={{ searched }}&page={{ results.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ results.number }} of {{ results.paginator.num_pages }}.
+                </span>
+
+                {% if results.has_next %}
+                <a href="?searched={{ searched }}&page={{ results.next_page_number }}">next</a>
+                <a href="?searched={{ searched }}&page={{ results.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        {% else %}
+        <p>Results not found for: "{{ searched }}".</p>
+        {% endif %}
+    </div>
+</div>
+{%endblock%}
